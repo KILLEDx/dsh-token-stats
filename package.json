@@ -1,0 +1,58 @@
+{
+  "name": "dsh-token-stats",
+  "displayName": "Token 统计",
+  "description": "设置页「Token 统计」分区：跨会话 token 用量指标与热力图（读本地会话日志聚合，零模型消耗）",
+  "version": "0.1.2",
+  "author": "KILLEDx",
+  "copyright": "Copyright (c) 2026 KILLEDx",
+  "license": "MIT",
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "token-stats",
+    "token-usage",
+    "heatmap"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KILLEDx/dsh-token-stats.git"
+  },
+  "homepage": "https://github.com/KILLEDx/dsh-token-stats#readme",
+  "bugs": {
+    "url": "https://github.com/KILLEDx/dsh-token-stats/issues"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": {
+      "default": "./lib/client.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web"
+    }
+  },
+  "engines": {
+    "dsh": ">=0.1.7-alpha.1 <0.2.0",
+    "node": ">=22.15"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/host/*.js",
+    "lib/client.js",
+    "lib/client.parts/*.js",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE",
+    "docs/assets/"
+  ]
+}

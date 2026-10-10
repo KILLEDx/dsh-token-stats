@@ -1,0 +1,10 @@
+# dsh-token-stats bundle patch.
+#
+# 本 bundle 向宿主 cordis 树插入一行插件条目。宿主半（lib/index.js）注册
+# GET /token-stats/summary（读本地会话日志聚合）；浏览器半（lib/client.js）
+# 被 dsh-client-modules 发现并 serve 到 /plugins/dsh-token-stats/client.js，
+# 在设置面板注册「Token 统计」分区页。
+
+- insert:
+    - id: token-stats
+      name: 'dsh-token-stats'

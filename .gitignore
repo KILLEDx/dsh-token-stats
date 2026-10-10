@@ -1,0 +1,29 @@
+# 备份区（各层级就近归位的 backups\，本身即历史副本）
+backups/
+
+# 临时与过程产物
+_过程文件/
+待删除文件/
+
+# 依赖
+node_modules/
+
+# 日志与缓存（运行时产物，不入库）
+*.log
+token-stats-cache/
+*.tmp
+
+# 编辑器与系统
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini
+*.swp
+
+# 凭据（硬前置：任何情况下不得入库）
+.env
+.env.*
+.credentials.yaml
+*.key
+*.pem
+*.p12
