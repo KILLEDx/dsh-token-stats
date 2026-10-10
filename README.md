@@ -33,7 +33,7 @@
 - [配置文件](#配置文件)
 - [统计口径](#统计口径)
 - [数据来源与边界](#数据来源与边界)
-- [安装 / 卸载](#安装--卸载)
+- [安装 / 升级 / 卸载](#安装--升级--卸载)
 
 ---
 
@@ -391,14 +391,7 @@ DSH 删除会话会连日志一起删掉，本插件会把已解析的结果移�
 
 ---
 
-## 安装 / 卸载
-
-在本插件目录下执行（`<你的 profile>` 填你的 DSH profile 名）：
-
-```
-dsh plugin --profile <你的 profile> add "<本插件目录的绝对路径>"
-dsh plugin --profile <你的 profile> remove dsh-token-stats
-```
+## 安装 / 升级 / 卸载
 
 **环境要求**
 
@@ -407,7 +400,74 @@ dsh plugin --profile <你的 profile> remove dsh-token-stats
 | DSH | `>=0.1.7-alpha.1 <0.2.0` |
 | Node.js | `>=22.15`（读取会话日志依赖 Node 内置的 zstd 解压） |
 
-装好后重启 `dsh web` 生效。本插件没有独立的设置表单，全部配置都在设置分区页内完成。
+插件没有独立的设置表单，全部配置都在设置页的「Token 统计」分区里完成。
+
+### 方式一：桌面版面板（推荐）
+
+DeepSeek Harness 桌面版自带插件管理界面，不需要命令行：
+
+1. 打开左侧的 **「插件」** 页（副标题为「安装、启用和配置插件」）。
+2. 点右上角的 **「+ 添加插件」**。
+3. 在「包名或地址」输入框里填入下面任意一种写法（三种等价）：
+
+   - `github:KILLEDx/dsh-token-stats`
+   - `https://github.com/KILLEDx/dsh-token-stats`
+   - `git+https://github.com/KILLEDx/dsh-token-stats.git`
+
+4. 点 **「安装」**，等进度走完。
+
+> **关于「安装源」下拉**：它只影响**按 npm 包名安装**的情况（默认安装源 / npm 官方源 / 中国大陆镜像源 / 自定义地址）。填 GitHub 地址时**不经过安装源**，而是本机直连 GitHub——所以国内网络若连不上 GitHub，请改用方式二并自行配置代理。
+
+**卸载**：在「插件」页点开 `Token 统计` 这一项进入详情页，点右上角的 **「卸载」**（垃圾桶图标）并确认。
+
+### 方式二：命令行
+
+适用于 `web`、`tui` 等由命令行管理的 profile（`<你的 profile>` 换成你的 profile 名，可用环境变量 `DSH_PROFILE` 查看）：
+
+```bash
+# 从 GitHub 安装
+dsh plugin --profile <你的 profile> add "github:KILLEDx/dsh-token-stats"
+
+# 或从本地目录安装（必须是绝对路径）
+dsh plugin --profile <你的 profile> add "<本插件目录的绝对路径>"
+
+# 卸载
+dsh plugin --profile <你的 profile> remove dsh-token-stats
+```
+
+> ⚠️ **`desktop` profile 的额外要求**：桌面版的 profile 由应用自身管理。用**桌面版自带的 `dsh` 命令**装它时，官方要求该 profile 已由桌面版初始化（即桌面版至少启动过一次），并建议先完全退出桌面版再执行；用**独立安装的 `dsh` CLI** 则会被直接拒绝，报 `profile "desktop" is managed exclusively by the Electron application`。桌面版用户直接用**方式一**最省事。
+
+### 方式三：让你的 AI 助手代装
+
+把下面整段发给你正在用的 AI 助手即可（DSH 里的助手，或其他 agent 都行）：
+
+```text
+请帮我安装 DSH 插件 dsh-token-stats，按下面步骤做：
+
+1. 先确认环境：DSH 版本需满足 >=0.1.7-alpha.1 <0.2.0，Node.js 需 >=22.15，
+   并确认当前 profile 名（环境变量 DSH_PROFILE）。
+2. 如果 profile 是 desktop：不要用命令行，直接告诉我按这个路径手动装——
+   打开「插件」页 →「+ 添加插件」→ 填 github:KILLEDx/dsh-token-stats →「安装」。
+3. 其他 profile 执行：
+   dsh plugin --profile <profile> add "github:KILLEDx/dsh-token-stats"
+4. 装完提醒我重启 DSH，并让我确认设置页出现了「Token 统计」分区、界面上出现了悬浮小窗。
+5. 如果失败，把完整报错原文发给我，不要自行猜测原因、不要擅自改用其他安装源。
+```
+
+### 装完要重启
+
+插件在 DSH 启动时加载，安装后需**重启 DSH** 才生效（面板会提示「更改将在下次启动生效」）。
+
+### 升级
+
+安装后**暂不支持自动更新**，升级请先卸载再装新版：
+
+```bash
+dsh plugin --profile <你的 profile> remove dsh-token-stats
+dsh plugin --profile <你的 profile> add "github:KILLEDx/dsh-token-stats"
+```
+
+升级前建议先备份配置文件（见[配置文件](#配置文件)）。
 
 ---
 
