@@ -397,7 +397,7 @@ DSH 删除会话会连日志一起删掉，本插件会把已解析的结果移�
 
 | 依赖 | 版本 |
 |---|---|
-| DSH | `>=0.1.7-alpha.1 <0.2.0` |
+| DSH | `>=0.1.7-alpha.1` |
 | Node.js | `>=22.15`（读取会话日志依赖 Node 内置的 zstd 解压） |
 
 插件没有独立的设置表单，全部配置都在设置页的「Token 统计」分区里完成。
@@ -444,7 +444,7 @@ dsh plugin --profile <你的 profile> remove dsh-token-stats
 ```text
 请帮我安装 DSH 插件 dsh-token-stats，按下面步骤做：
 
-1. 先确认环境：DSH 版本需满足 >=0.1.7-alpha.1 <0.2.0，Node.js 需 >=22.15，
+1. 先确认环境：DSH 版本需 >=0.1.7-alpha.1，Node.js 需 >=22.15，
    并确认当前 profile 名（环境变量 DSH_PROFILE）。
 2. 如果 profile 是 desktop：不要用命令行，直接告诉我按这个路径手动装——
    打开「插件」页 →「+ 添加插件」→ 填 github:KILLEDx/dsh-token-stats →「安装」。
